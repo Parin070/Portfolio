@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 const WhoAmI = () => {
   return (
     <section id="whoami" className="section-container">
+      <h2 className="section-title">neofetch</h2>
       <motion.div 
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="section-title">neofetch</h2>
         
         <div className="glass-panel" style={{ position: 'relative', padding: '0' }}>
           {/* Terminal Window Decoration */}

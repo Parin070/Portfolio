@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
+import { Folder } from 'lucide-react';
 
 const skillsData = [
   { category: 'languages', items: ['Python', 'Java', 'C/C++', 'Bash'], color: '#ff5f56' },
@@ -13,13 +14,13 @@ const skillsData = [
 const Skills = () => {
   return (
     <section id="skills" className="section-container">
+      <h2 className="section-title">ls -l ./skills</h2>
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="section-title">ls -l ./skills</h2>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
           {skillsData.map((skill, index) => (
@@ -41,8 +42,8 @@ const Skills = () => {
                 tiltMaxAngleY={10}
               >
                 <div className="glass-panel" style={{ height: '100%' }}>
-                  <h3 style={{ color: skill.color, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.4rem' }}>
-                    <span style={{ fontSize: '1.5rem' }}>📁</span> {skill.category}/
+                  <h3 style={{ color: skill.color, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.4rem' }}>
+                    <Folder size={24} style={{ color: skill.color }} /> {skill.category}/
                   </h3>
                   <ul style={{ listStyleType: 'none', fontSize: '1.1rem' }}>
                     {skill.items.map(item => (

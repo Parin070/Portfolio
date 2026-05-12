@@ -30,13 +30,13 @@ const projects = [
 const Projects = () => {
   return (
     <section id="projects" className="section-container">
+      <h2 className="section-title">cat ./projects.json</h2>
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="section-title">cat ./projects.json</h2>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
           {projects.map((project, index) => (
