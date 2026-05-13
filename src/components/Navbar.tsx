@@ -5,11 +5,19 @@ import { Terminal, Menu, X } from 'lucide-react';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const container = document.getElementById('terminal-scroll-container');
+    const handleScroll = (e: Event) => {
+      const target = e.target as HTMLElement;
+      setScrolled(target.scrollTop > 50);
+    };
+    
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   const navLinks = ['Home', 'WhoAmI', 'Skills', 'Projects', 'Contact'];
@@ -30,23 +38,39 @@ const Navbar = () => {
       </div>
       
       {/* Desktop Nav */}
-      <div style={{ display: 'flex', gap: '2rem' }} className="desktop-nav">
+      <ul style={{ display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0 }} className="desktop-nav">
         {navLinks.map((item) => (
-          <Link
-            key={item}
-            to={item.toLowerCase()}
-            smooth={true}
-            duration={500}
-            style={{ cursor: 'pointer', color: 'var(--text-secondary)', transition: 'color 0.2s' }}
-            activeStyle={{ color: 'var(--accent-green)' }}
-            spy={true}
-            onMouseEnter={(e: any) => e.target.style.color = 'var(--accent-cyan)'}
-            onMouseLeave={(e: any) => e.target.style.color = 'var(--text-secondary)'}
-          >
-            --{item.toLowerCase()}
-          </Link>
+          <li key={item}>
+            <Link
+              activeClass="active"
+              to={item.toLowerCase()}
+              spy={true}
+              smooth={true}
+              offset={-50}
+              duration={500}
+              containerId="terminal-scroll-container"
+              onSetActive={() => setActiveSection(item.toLowerCase())}
+              style={{
+                color: activeSection === item.toLowerCase() ? 'var(--accent-green)' : 'var(--text-secondary)',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                fontSize: '1.1rem',
+                transition: 'color 0.3s ease'
+              }}
+              onMouseEnter={(e: any) => e.target.style.color = 'var(--accent-cyan)'}
+              onMouseLeave={(e: any) => {
+                if (activeSection !== item.toLowerCase()) {
+                  e.target.style.color = 'var(--text-secondary)';
+                } else {
+                  e.target.style.color = 'var(--accent-green)';
+                }
+              }}
+            >
+              ./{item.toLowerCase()}
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
 
       {/* Mobile Toggle */}
       <div className="mobile-toggle" style={{ display: 'none', cursor: 'pointer', color: 'var(--accent-cyan)' }} onClick={() => setMobileOpen(!mobileOpen)}>

@@ -21,7 +21,7 @@ function App() {
           <div className="mac-btn maximize"></div>
           <div className="terminal-title">parin@root:~</div>
         </div>
-        <main className="terminal-content">
+        <main id="terminal-scroll-container" className="terminal-content">
           <Hero />
           <WhoAmI />
           <Skills />
