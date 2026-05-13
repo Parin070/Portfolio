@@ -135,17 +135,22 @@ const Projects = () => {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="glass-panel"
               style={{
                 maxWidth: '800px',
                 width: '100%',
+                maxHeight: '85vh',
+                display: 'flex',
+                flexDirection: 'column',
                 background: 'rgba(5, 10, 21, 0.95)',
                 border: '1px solid var(--accent-cyan)',
-                boxShadow: '0 0 50px rgba(0, 243, 255, 0.2)'
+                borderRadius: '16px',
+                boxShadow: '0 0 50px rgba(0, 243, 255, 0.2)',
+                overflow: 'hidden'
               }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h3 style={{ fontSize: '2rem', color: 'var(--text-primary)' }}>{selectedProject.title}</h3>
+              <div className="custom-scrollbar" style={{ padding: '2.5rem', overflowY: 'auto', flex: 1 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                  <h3 style={{ fontSize: '2rem', color: 'var(--text-primary)' }}>{selectedProject.title}</h3>
                 <button 
                   onClick={() => setSelectedProject(null)}
                   style={{ background: 'transparent', border: 'none', color: 'var(--accent-green)', cursor: 'pointer' }}
@@ -198,7 +203,8 @@ const Projects = () => {
                   </a>
                 )}
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
