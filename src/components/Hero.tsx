@@ -1,97 +1,106 @@
-import { motion } from 'framer-motion';
-import { Download } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Hero = () => {
+  const [showInit, setShowInit] = useState(true);
+
   const sequence = [
     "./initialize",
     "bypassing mainframe security...",
     "establishing secure connection...",
-    "access granted.",
-    "welcome to the portfolio of Parin Arora."
+    "access granted."
   ];
 
-  return (
-    <section id="home" className="section-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', position: 'relative', zIndex: 10 }}
-      >
-        <div style={{ fontSize: '1.4rem', color: 'var(--accent-green)' }}>
-          {sequence.map((line, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: i * 0.7, duration: 0.2 }}
-              style={{ marginBottom: '0.5rem' }}
-            >
-              <span style={{ color: 'var(--accent-cyan)' }}>&gt;</span> {line}
-            </motion.div>
-          ))}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: sequence.length * 0.7, duration: 0.2 }}
-          >
-            <span style={{ color: 'var(--accent-cyan)' }}>&gt;</span> <span className="typing-cursor"></span>
-          </motion.div>
-        </div>
+  useEffect(() => {
+    const totalTime = (sequence.length * 700) + 1500;
+    const timer = setTimeout(() => {
+      setShowInit(false);
+    }, totalTime);
+    return () => clearTimeout(timer);
+  }, []);
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ delay: sequence.length * 0.7 + 0.3, duration: 1 }}
-          style={{ marginTop: '3rem' }}
-        >
+  return (
+    <section id="home" className="section-container" style={{ minHeight: '80vh' }}>
+      
+      <AnimatePresence>
+        {showInit && (
+          <motion.div 
+            initial={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0, overflow: 'hidden' }}
+            transition={{ duration: 0.8 }}
+            style={{ marginBottom: '2rem' }}
+          >
+            <div style={{ fontSize: '1.4rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
+              {sequence.map((line, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: i * 0.7, duration: 0.2 }}
+                  style={{ marginBottom: '0.5rem' }}
+                >
+                  <span style={{ color: 'var(--accent-green)', marginRight: '0.8rem' }}>parin@root:~$</span> <span style={{ color: 'var(--text-primary)' }}>{line}</span>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: sequence.length * 0.7, duration: 0.2 }}
+              >
+                <span style={{ color: 'var(--accent-green)', marginRight: '0.8rem' }}>parin@root:~$</span> <span className="typing-cursor"></span>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }} 
+        animate={{ opacity: showInit ? 0 : 1, y: showInit ? 20 : 0 }} 
+        transition={{ duration: 1 }}
+        style={{ 
+          marginTop: showInit ? '2rem' : '0',
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+          gap: '4rem', 
+          alignItems: 'center',
+          pointerEvents: showInit ? 'none' : 'auto'
+        }}
+      >
+        <div>
           <h1 style={{ fontSize: '5rem', color: 'var(--text-primary)', marginBottom: '1rem', lineHeight: '1.1' }}>
             Parin Arora.
           </h1>
           <h2 style={{ fontSize: '2.5rem', color: 'var(--text-secondary)' }}>
             Blue Team | SOC | Threat Hunter
           </h2>
-          <p style={{ marginTop: '2rem', color: 'var(--text-secondary)', maxWidth: '700px', fontSize: '1.3rem', lineHeight: '1.8', marginBottom: '3rem' }}>
+          <p style={{ marginTop: '2rem', color: 'var(--text-secondary)', maxWidth: '700px', fontSize: '1.3rem', lineHeight: '1.8' }}>
             Hunting threats, building tools, breaking things ethically. <br />
-            Currently specializing in Digital Forensics and Incident Response.
+            Focusing on Blue Team, Digital Forensics, and Incident Response.
           </p>
-          
-          <a 
-            href="/Parin_Arora_CV.pdf" 
-            download
+        </div>
+        
+        <div style={{ position: 'relative', display: 'flex', justifySelf: 'center' }}>
+          <div style={{ 
+            position: 'absolute', top: -10, left: -10, right: -10, bottom: -10, 
+            background: 'linear-gradient(45deg, var(--accent-cyan), transparent)', 
+            borderRadius: '12px', zIndex: -1, filter: 'blur(10px)', opacity: 0.5 
+          }}></div>
+          <img 
+            src="/profile.png" 
+            alt="Parin Arora" 
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.8rem 1.5rem',
-              color: 'var(--bg-color)',
-              background: 'var(--accent-cyan)',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '1.1rem',
-              fontWeight: 'bold',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
+              width: '100%',
+              maxWidth: '350px',
+              aspectRatio: '1/1',
+              objectFit: 'cover',
+              borderRadius: '12px',
+              border: '2px solid var(--accent-cyan)',
+              boxShadow: '0 0 30px rgba(0, 243, 255, 0.2)',
+              filter: 'grayscale(30%)'
             }}
-            onMouseEnter={(e: any) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = 'var(--accent-cyan)';
-              e.currentTarget.style.border = '1px solid var(--accent-cyan)';
-              e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 243, 255, 0.4)';
-            }}
-            onMouseLeave={(e: any) => {
-              e.currentTarget.style.background = 'var(--accent-cyan)';
-              e.currentTarget.style.color = 'var(--bg-color)';
-              e.currentTarget.style.border = '1px solid transparent';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            <Download size={20} />
-            ./download_cv
-          </a>
-        </motion.div>
+          />
+        </div>
       </motion.div>
     </section>
   );

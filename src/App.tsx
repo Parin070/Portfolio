@@ -14,13 +14,21 @@ function App() {
       <Background />
       <Cursor />
       <Navbar />
-      <main>
-        <Hero />
-        <WhoAmI />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
+      <div className="global-terminal glass-panel">
+        <div className="terminal-header">
+          <div className="mac-btn close"></div>
+          <div className="mac-btn minimize"></div>
+          <div className="mac-btn maximize"></div>
+          <div className="terminal-title">parin@root:~</div>
+        </div>
+        <main className="terminal-content">
+          <Hero />
+          <WhoAmI />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+      </div>
     </div>
   );
 }

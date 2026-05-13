@@ -5,7 +5,7 @@ import { Download } from 'lucide-react';
 const Contact = () => {
   return (
     <section id="contact" className="section-container" style={{ minHeight: '80vh' }}>
-      <h2 className="section-title">ping -c 4 parin</h2>
+      <h2 className="section-title"><span style={{ color: 'var(--accent-green)', marginRight: '0.8rem', fontFamily: 'var(--font-mono)', fontSize: '1.5rem' }}>parin@root:~$</span> ping -c 4 parin</h2>
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}

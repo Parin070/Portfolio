@@ -78,14 +78,14 @@ body::before {
 }
 
 /* Layout Utilities */
-main {
+main.terminal-content {
   position: relative;
   z-index: 10;
 }
 
 .section-container {
-  min-height: 100vh;
-  padding: 120px 20px 60px 20px;
+  min-height: 80vh;
+  padding: 60px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -97,17 +97,73 @@ main {
 
 .section-title {
   font-size: 2.5rem;
-  color: var(--accent-cyan);
+  color: var(--text-primary);
   margin-bottom: 3rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.section-title::before {
-  content: '>';
-  color: var(--accent-green);
+/* Global Terminal Overhaul */
+.global-terminal {
+  width: 90vw;
+  max-width: 1400px;
+  height: 85vh;
+  margin: 100px auto 5vh auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  background: rgba(5, 10, 21, 0.7);
+  border-radius: 12px;
 }
+
+.terminal-header {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--card-border);
+  gap: 0.8rem;
+  position: relative;
+}
+
+.mac-btn {
+  width: 14px; height: 14px; border-radius: 50%;
+}
+.mac-btn.close { background: #ff5f56; }
+.mac-btn.minimize { background: #ffbd2e; }
+.mac-btn.maximize { background: #27c93f; }
+
+.terminal-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.terminal-content {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.terminal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.terminal-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+.terminal-content::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan);
+  border-radius: 4px;
+}
+
+
 
 .section-title::after {
   content: '';

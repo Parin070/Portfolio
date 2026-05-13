@@ -14,7 +14,7 @@ const skillsData = [
 const Skills = () => {
   return (
     <section id="skills" className="section-container">
-      <h2 className="section-title">ls -l ./skills</h2>
+      <h2 className="section-title"><span style={{ color: 'var(--accent-green)', marginRight: '0.8rem', fontFamily: 'var(--font-mono)', fontSize: '1.5rem' }}>parin@root:~$</span> ls -l ./skills</h2>
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
