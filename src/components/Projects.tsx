@@ -8,7 +8,7 @@ const projects = [
     title: 'Cowrie SSH Honeypot Lab',
     shortDesc: 'SSH honeypot deployed on Ubuntu Server VM, integrated with Wazuh SIEM.',
     longDesc: 'A full attack-defend pipeline built by deploying a Cowrie SSH honeypot on an Ubuntu Server virtual machine. The honeypot logs attack data, which is securely forwarded to a Wazuh SIEM instance using custom Filebeat configurations. I wrote custom Wazuh decoders and rules to accurately detect, alert, and analyze the attacks originating from malicious actors.',
-    tech: ['Wazuh', 'Cowrie', 'Ubuntu Server', 'SIEM', 'ELK Stack', 'Bash'],
+    tech: ['Wazuh', 'Cowrie', 'Ubuntu Server', 'SIEM', 'Bash'],
     github: 'https://github.com/parin070/Cowrie-Honeypot-Lab',
     permissions: '-rw-r--r--'
   },
