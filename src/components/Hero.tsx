@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Download } from 'lucide-react';
 
 const Hero = () => {
   const [showInit, setShowInit] = useState(true);
@@ -80,26 +81,54 @@ const Hero = () => {
           </p>
         </div>
         
-        <div style={{ position: 'relative', display: 'flex', justifySelf: 'center' }}>
-          <div style={{ 
-            position: 'absolute', top: -10, left: -10, right: -10, bottom: -10, 
-            background: 'linear-gradient(45deg, var(--accent-cyan), transparent)', 
-            borderRadius: '12px', zIndex: -1, filter: 'blur(10px)', opacity: 0.5 
-          }}></div>
-          <img 
-            src="/profile.png" 
-            alt="Parin Arora" 
+        <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifySelf: 'center' }}>
+          <div style={{ position: 'relative', display: 'flex' }}>
+            <div style={{ 
+              position: 'absolute', top: -10, left: -10, right: -10, bottom: -10, 
+              background: 'linear-gradient(45deg, var(--accent-cyan), transparent)', 
+              borderRadius: '12px', zIndex: -1, filter: 'blur(10px)', opacity: 0.5 
+            }}></div>
+            <img 
+              src="/profile.png" 
+              alt="Parin Arora" 
+              style={{
+                width: '100%',
+                maxWidth: '350px',
+                aspectRatio: '1/1',
+                objectFit: 'cover',
+                borderRadius: '12px',
+                border: '2px solid var(--accent-cyan)',
+                boxShadow: '0 0 30px rgba(0, 243, 255, 0.2)',
+                filter: 'grayscale(30%)'
+              }}
+            />
+          </div>
+          
+          <a 
+            href="/Parin_Arora_CV.pdf" 
+            download="Parin_Arora_CV.pdf"
+            className="btn"
             style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.8rem',
+              textDecoration: 'none',
+              padding: '1rem 2rem',
+              background: 'rgba(0, 255, 65, 0.1)',
+              border: '1px solid var(--accent-green)',
+              color: 'var(--accent-green)',
+              borderRadius: '4px',
+              fontSize: '1.2rem',
+              transition: 'all 0.3s ease',
+              marginTop: '2.5rem',
               width: '100%',
-              maxWidth: '350px',
-              aspectRatio: '1/1',
-              objectFit: 'cover',
-              borderRadius: '12px',
-              border: '2px solid var(--accent-cyan)',
-              boxShadow: '0 0 30px rgba(0, 243, 255, 0.2)',
-              filter: 'grayscale(30%)'
+              maxWidth: '350px'
             }}
-          />
+          >
+            <Download size={24} />
+            Download Resume
+          </a>
         </div>
       </motion.div>
     </section>

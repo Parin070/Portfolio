@@ -188,3 +188,24 @@ main.terminal-content {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-cyan);
 }
+
+/* Contact Form Input Styles */
+.terminal-input {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+  padding: 1rem;
+  font-family: var(--font-mono);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.terminal-input:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+.terminal-input::placeholder {
+  color: var(--text-secondary);
+}
