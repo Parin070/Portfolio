@@ -1,0 +1,84 @@
+/* ===== Terminal App Styles ===== */
+
+.terminal-app {
+  width: 100%;
+  height: 100%;
+  background: #0a0e17;
+  position: relative;
+}
+
+.terminal-app .xterm {
+  padding: 8px;
+  height: 100%;
+}
+
+/* Override xterm scrollbar to match theme */
+.terminal-app .xterm-viewport::-webkit-scrollbar {
+  width: 6px;
+}
+.terminal-app .xterm-viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+.terminal-app .xterm-viewport::-webkit-scrollbar-thumb {
+  background: rgba(0, 243, 255, 0.2);
+  border-radius: 3px;
+}
+
+/* Terminal output formatting */
+.terminal-app .xterm-rows {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Fallback terminal (non-xterm) */
+.terminal-fallback {
+  width: 100%;
+  height: 100%;
+  background: #0a0e17;
+  padding: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #e2e8f0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-fallback .prompt {
+  color: #00ff41;
+}
+
+.terminal-fallback .cmd-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e2e8f0;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  caret-color: #00ff41;
+}
+
+.terminal-fallback .output-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+.terminal-fallback .output-line.accent-cyan {
+  color: #00f3ff;
+}
+.terminal-fallback .output-line.accent-green {
+  color: #00ff41;
+}
+.terminal-fallback .output-line.accent-purple {
+  color: #7b2cbf;
+}
+.terminal-fallback .output-line.accent-yellow {
+  color: #ffbd2e;
+}
+.terminal-fallback .output-line.accent-red {
+  color: #ff5f56;
+}
+.terminal-fallback .output-line.muted {
+  color: #4a5568;
+}

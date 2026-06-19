@@ -1,0 +1,142 @@
+/* ===== macOS-Style Dock ===== */
+
+.dock-container {
+  position: fixed;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.dock-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 6px 10px;
+  background: rgba(30, 30, 50, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Individual dock icon wrapper */
+.dock-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Dock Icon */
+.dock-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #151923; /* Solid color */
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  cursor: pointer !important;
+  transition: all var(--transition-fast);
+  position: relative;
+  will-change: transform;
+}
+
+.dock-icon:hover {
+  background: #1f2536;
+  border-color: rgba(0, 243, 255, 0.5);
+}
+
+.dock-icon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+/* Active indicator dot */
+.dock-indicator {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  margin-top: 4px;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.dock-indicator.active {
+  opacity: 1;
+}
+
+/* Tooltip */
+.dock-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 30, 50, 0.9);
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Bounce animation for app launch */
+@keyframes dockBounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-16px); }
+  50% { transform: translateY(-4px); }
+  75% { transform: translateY(-10px); }
+}
+
+.dock-icon.bouncing {
+  animation: dockBounce 0.6s ease;
+}
+
+/* ===== Mobile: Replace dock with tab bar ===== */
+@media (max-width: 768px) {
+  .dock-container {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+
+  .dock-bar {
+    width: 100%;
+    border-radius: 0;
+    justify-content: space-around;
+    padding: 8px 4px;
+    gap: 0;
+  }
+
+  .dock-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .dock-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .dock-tooltip {
+    display: none;
+  }
+}

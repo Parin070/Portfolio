@@ -1,0 +1,107 @@
+/* ===== Window Chrome ===== */
+
+.os-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--window-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-window);
+  border: 1px solid var(--glass-border);
+  background: rgba(10, 14, 23, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  will-change: transform;
+}
+
+.os-window.focused {
+  box-shadow: var(--shadow-window-focused);
+  border-color: rgba(0, 243, 255, 0.12);
+}
+
+/* Title Bar */
+.window-titlebar {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Traffic Light Buttons */
+.traffic-lights {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.traffic-light {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter var(--transition-fast);
+}
+
+.traffic-light svg {
+  width: 7px;
+  height: 7px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.window-titlebar:hover .traffic-light svg {
+  opacity: 1;
+}
+
+.traffic-light.close {
+  background: #ff5f56;
+}
+.traffic-light.close svg { stroke: #4a0000; }
+
+.traffic-light.minimize {
+  background: #ffbd2e;
+}
+.traffic-light.minimize svg { stroke: #5a3e00; }
+
+.traffic-light.maximize {
+  background: #27c93f;
+}
+.traffic-light.maximize svg { stroke: #0a4a12; }
+
+.traffic-light:hover {
+  filter: brightness(1.15);
+}
+
+/* Window Title */
+.window-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  pointer-events: none;
+}
+
+/* Window Body */
+.window-body {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+}
+
+/* Minimized state (handled by framer-motion, just in case) */
+.os-window.minimized {
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.1) translateY(100vh);
+}

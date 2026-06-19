@@ -19,7 +19,8 @@ const Cursor = () => {
         target.tagName.toLowerCase() === 'a' ||
         target.tagName.toLowerCase() === 'button' ||
         target.closest('.glass-panel') ||
-        target.closest('a')
+        target.closest('a') ||
+        target.closest('button')
       ) {
         setIsHovering(true);
       } else {
